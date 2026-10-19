@@ -72,7 +72,23 @@ export const es: Translation = {
       'consorcio': { name: 'CONSÓRCIO PAULITEC', desc: 'Recuperación Puente dos Barreiros' },
       'ctg': { name: 'CTG BRASIL', desc: '14 centrales hidroeléctricas - Contrato 2024/2025' },
       'cutrale': { name: 'CUTRALE', desc: 'Terminal de jugo - Protección catódica' },
-      'dae': { name: 'DAE', desc: 'Servicios de saneamiento' }
+      'dae': { name: 'DAE', desc: 'Servicios de saneamiento' },
+      'copersucar': { name: 'COPERSUCAR', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'dow': { name: 'DOW QUÍMICA', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'finger-sommer': { name: 'FINGER & SOMMER', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'guanhaes': { name: 'GUANHÃES ENERGIA', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'intenge': { name: 'INTENGE', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'natura': { name: 'NATURA', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'aps': { name: 'APS', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'petrobras': { name: 'PETROBRAS', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'piatec': { name: 'PIATEC', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'porto-acu': { name: 'PORTO DO AÇU', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'retrofit': { name: 'RETROFIT', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'sabesp': { name: 'SABESP', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'santos-brasil': { name: 'SANTOS BRASIL', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'transpetro': { name: 'TRANSPETRO', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'vopak': { name: 'VOPAK', desc: 'Cliente de Atlântico para servicios técnicos submarinos' },
+      'yara': { name: 'YARA', desc: 'Cliente de Atlântico para servicios técnicos submarinos' }
     }
   },
   
@@ -115,6 +131,7 @@ export const es: Translation = {
   footer: {
     address: 'Calle Bittencourt, 25',
     addressLine2: 'Vila Nova - Santos/SP',
+    administrativeHours: 'Horario de Atención: Lunes a viernes, de 8:00 a 18:00.',
     copyright: '© 2026 Atlântico Servicios Técnicos Submarinos. Todos los derechos reservados.',
   },
 };

@@ -22,6 +22,9 @@ export default function Footer() {
           <span>© 2025 Atlântico. Todos os direitos reservados.</span>
         </div>
       </div>
+      <p className="mt-3 text-center text-gray-300 text-xs">
+        Horário de Atendimento: Segunda a sexta-feira, das 8h às 18h.
+      </p>
     </footer>
   );
 }

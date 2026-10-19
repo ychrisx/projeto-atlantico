@@ -404,24 +404,8 @@ export default function Home() {
       <div className="bg-dark text-whiteish font-sans overflow-x-hidden">
         {/* HEADER */}
         <header className="fixed top-0 w-full z-50 bg-[#0E1A2B] shadow-lg flex items-center justify-between px-4 md:px-10 py-3 md:py-4 animate-slideDown">
-          <div className="flex items-center gap-4 md:gap-12">
-            <div className="relative animate-fadeIn">
-              <button id="menu-btn" className="text-white hover:text-accent transition-colors flex flex-col gap-1 md:gap-1.5">
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-              </button>
-              <div id="dropdown" className="hidden absolute top-full left-0 mt-5 md:mt-6 w-56 bg-[#223A5E] shadow-2xl border border-dark rounded-b-md overflow-hidden flex-col z-50">
-                <a href="/sobre-nos" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.aboutUs}</a>
-                <a href="#servicos" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg md:hidden">{t.nav.services.toUpperCase()}</a>
-                <a href="/fale-conosco" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg md:hidden">{t.nav.contactUs}</a>
-                <a href="/sobre-nos#clientes" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.clients}</a>
-                <a href="/sobre-nos#parceiros" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.partners}</a>
-                <a href="/sobre-nos#galeria" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium text-lg">{t.nav.gallery}</a>
-              </div>
-            </div>
-            <nav className="flex gap-4 md:gap-8 font-bold tracking-wider text-sm md:text-xl uppercase items-center h-full mt-1 animate-fadeIn animate-delay-100">
-              <div className="relative group">
+          <nav className="min-w-0 flex-1 overflow-x-auto flex gap-2 md:gap-6 font-bold tracking-wide text-[10px] sm:text-xs md:text-sm lg:text-base uppercase items-center whitespace-nowrap animate-fadeIn animate-delay-100">
+              <div className="relative group shrink-0">
                 <a href="#servicos" className="hover:text-accent transition-colors text-white py-2 block">{t.nav.services}</a>
                 <div id="desktop-dropdown-menu" className="absolute top-full left-0 hidden md:group-hover:block dropdown-bridge z-50">
                   <div className="w-72 bg-[#15253F] shadow-2xl border border-dark rounded-md overflow-hidden flex flex-col">
@@ -438,10 +422,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <a href="/fale-conosco" className="hover:text-accent transition-colors text-white py-2 block">{t.nav.contactUs}</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
+              <a href="/sobre-nos#sobre" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.aboutUs}</a>
+              <a href="/sobre-nos#clientes" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.partners}</a>
+              <a href="/sobre-nos#galeria" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.gallery}</a>
+              <a href="/fale-conosco" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.contactUs}</a>
+          </nav>
+          <div className="flex shrink-0 items-center gap-2 md:gap-4">
             <div className="cursor-pointer hover:opacity-80 transition-opacity animate-fadeIn animate-delay-200" onClick={() => window.scrollTo(0,0)}>
               <img src="/images/logo-atlatico-vector.png" alt="Atlântico Logo" className="h-10 md:h-14 object-contain" />
             </div>
@@ -511,6 +497,7 @@ export default function Home() {
               <span className="font-bold text-sm md:text-lg">atlanticosts@atlanticosts.com.br</span>
             </a>
           </div>
+          <p className="text-center mt-6 text-sm text-gray-300">{t.footer.administrativeHours}</p>
           <div className="text-center mt-8 text-xs text-gray-500">{t.footer.copyright}</div>
         </footer>
       </div>
@@ -521,43 +508,8 @@ export default function Home() {
 setTimeout(function() {
   console.log('Iniciando script de serviços...');
 
-// Controle dos Menus
-const menuBtn = document.getElementById('menu-btn');
-const dropdown = document.getElementById('dropdown');
-const mobileLinks = document.querySelectorAll('.mobile-link');
 const dropdownServiceLinks = document.querySelectorAll('.dropdown-service-link');
 const desktopDropdownMenu = document.getElementById('desktop-dropdown-menu');
-
-console.log('Elementos encontrados:', {
-  menuBtn: !!menuBtn,
-  dropdown: !!dropdown,
-  mobileLinks: mobileLinks.length,
-  dropdownServiceLinks: dropdownServiceLinks.length,
-  desktopDropdownMenu: !!desktopDropdownMenu
-});
-
-if (menuBtn && dropdown) {
-  menuBtn.addEventListener('click', () => { 
-    dropdown.classList.toggle('hidden');
-    dropdown.classList.toggle('flex');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.classList.add('hidden');
-      dropdown.classList.remove('flex');
-    }
-  });
-}
-
-if (mobileLinks) {
-  mobileLinks.forEach(link => link.addEventListener('click', () => {
-    if (dropdown) {
-      dropdown.classList.add('hidden');
-      dropdown.classList.remove('flex');
-    }
-  }));
-}
 
 // Dados dos serviços
 const rawData = {

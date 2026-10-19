@@ -24,6 +24,7 @@ export default function FooterWithI18n() {
           <span className="font-bold text-sm md:text-lg">atlanticosts@atlanticosts.com.br</span>
         </a>
       </div>
+      <p className="text-center mt-6 text-sm text-gray-300">{t.footer.administrativeHours}</p>
       <div className="text-center mt-8 text-xs text-gray-500">{t.footer.copyright}</div>
     </footer>
   );

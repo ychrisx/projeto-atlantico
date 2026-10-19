@@ -72,7 +72,23 @@ export const en: Translation = {
       'consorcio': { name: 'CONSÓRCIO PAULITEC', desc: 'Barreiros Bridge recovery' },
       'ctg': { name: 'CTG BRASIL', desc: '14 hydroelectric plants - Contract 2024/2025' },
       'cutrale': { name: 'CUTRALE', desc: 'Juice terminal - Cathodic protection' },
-      'dae': { name: 'DAE', desc: 'Sanitation services' }
+      'dae': { name: 'DAE', desc: 'Sanitation services' },
+      'copersucar': { name: 'COPERSUCAR', desc: 'Atlântico client for underwater technical services' },
+      'dow': { name: 'DOW QUÍMICA', desc: 'Atlântico client for underwater technical services' },
+      'finger-sommer': { name: 'FINGER & SOMMER', desc: 'Atlântico client for underwater technical services' },
+      'guanhaes': { name: 'GUANHÃES ENERGIA', desc: 'Atlântico client for underwater technical services' },
+      'intenge': { name: 'INTENGE', desc: 'Atlântico client for underwater technical services' },
+      'natura': { name: 'NATURA', desc: 'Atlântico client for underwater technical services' },
+      'aps': { name: 'APS', desc: 'Atlântico client for underwater technical services' },
+      'petrobras': { name: 'PETROBRAS', desc: 'Atlântico client for underwater technical services' },
+      'piatec': { name: 'PIATEC', desc: 'Atlântico client for underwater technical services' },
+      'porto-acu': { name: 'PORTO DO AÇU', desc: 'Atlântico client for underwater technical services' },
+      'retrofit': { name: 'RETROFIT', desc: 'Atlântico client for underwater technical services' },
+      'sabesp': { name: 'SABESP', desc: 'Atlântico client for underwater technical services' },
+      'santos-brasil': { name: 'SANTOS BRASIL', desc: 'Atlântico client for underwater technical services' },
+      'transpetro': { name: 'TRANSPETRO', desc: 'Atlântico client for underwater technical services' },
+      'vopak': { name: 'VOPAK', desc: 'Atlântico client for underwater technical services' },
+      'yara': { name: 'YARA', desc: 'Atlântico client for underwater technical services' }
     }
   },
   
@@ -115,6 +131,7 @@ export const en: Translation = {
   footer: {
     address: 'Bittencourt Street, 25',
     addressLine2: 'Vila Nova - Santos/SP',
+    administrativeHours: 'Service Hours: Monday to Friday, 8:00 AM to 6:00 PM.',
     copyright: '© 2026 Atlântico Underwater Technical Services. All rights reserved.',
   },
 };

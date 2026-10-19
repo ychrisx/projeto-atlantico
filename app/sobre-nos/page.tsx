@@ -8,7 +8,6 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 // Extend Window interface to include custom functions
 declare global {
   interface Window {
-    scrollPartners: (direction: number) => void;
     scrollGallery: (direction: number) => void;
     openLightbox: (url: string, type: string) => void;
     closeLightbox: () => void;
@@ -30,25 +29,7 @@ export default function SobreNosPage() {
     }
 
     const timer = setTimeout(async () => {
-      // 1. Menu Hamburguer
-      const menuBtn = document.getElementById('menu-btn');
-      const dropdown = document.getElementById('dropdown');
-      
-      if (menuBtn && dropdown) {
-        menuBtn.addEventListener('click', () => { 
-          dropdown.classList.toggle('hidden');
-          dropdown.classList.toggle('flex');
-        });
-        
-        document.addEventListener('click', (e) => {
-          if (!menuBtn.contains(e.target as Node) && !dropdown.contains(e.target as Node)) {
-            dropdown.classList.add('hidden');
-            dropdown.classList.remove('flex');
-          }
-        });
-      }
-
-      // 2. Slideshow "Sobre Nós"
+      // 1. Slideshow "Sobre Nós"
       const slides = document.querySelectorAll('.slide-img');
       let currentSlide = 0;
       setInterval(() => {
@@ -61,9 +42,6 @@ export default function SobreNosPage() {
 
       // 3. Carrossel de Parceiros
       const partnersTrack = document.getElementById('partners-track');
-      let partnerScrollInterval: any;
-      let isPartnerPaused = false;
-      let partnerTimeout: any;
 
       // Lista de logos dos parceiros
       const parceirosLogos = [
@@ -84,37 +62,30 @@ export default function SobreNosPage() {
         { nome: 'Petrobras', arquivo: 'petrobras-br.png' }
       ];
 
-      let partnerHTML = '';
-      // Duplicar 3 vezes para efeito infinito suave
-      for(let repeat = 0; repeat < 3; repeat++) {
-        parceirosLogos.forEach(parceiro => {
-          partnerHTML += '<a href="#" target="_blank" class="shrink-0 w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl shadow-md border-[4px] border-[#e2e8f0] flex items-center justify-center p-3 hover:scale-105 transition-transform">' +
-            '<img src="/parceiros/' + parceiro.arquivo + '" alt="' + parceiro.nome + '" class="max-w-full max-h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML=\'<div class=\\\'text-center\\\'><div class=\\\'text-gray-400 text-xs font-bold\\\'>' + parceiro.nome + '</div><div class=\\\'text-gray-300 text-[8px] mt-1\\\'>Logo não encontrado</div></div>\'">' +
-            '</a>';
+      if (partnersTrack) {
+        const partnerCards = parceirosLogos.map(parceiro =>
+          '<a href="#" target="_blank" style="border:0.2px solid #e2e8f0" class="shrink-0 w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl shadow-md flex items-center justify-center p-3 hover:scale-105 transition-transform">' +
+            '<img src="/parceiros/' + parceiro.arquivo + '" alt="' + parceiro.nome + '" class="max-w-full max-h-full object-contain">' +
+            '</a>'
+        ).join('');
+
+        partnersTrack.innerHTML = [false, true]
+          .map(isDuplicate =>
+            '<div class="partner-set flex shrink-0 gap-4 md:gap-6 pr-4 md:pr-6"' +
+              (isDuplicate ? ' aria-hidden="true"' : '') +
+              '>' + partnerCards + '</div>'
+          )
+          .join('');
+
+        partnersTrack.querySelectorAll('img').forEach(img => {
+          img.addEventListener('error', () => {
+            const fallback = document.createElement('span');
+            fallback.className = 'text-center text-gray-400 text-xs font-bold';
+            fallback.textContent = img.alt;
+            img.replaceWith(fallback);
+          }, { once: true });
         });
       }
-      if (partnersTrack) partnersTrack.innerHTML = partnerHTML;
-
-      function startAutoScrollPartners() {
-        if(partnerScrollInterval) clearInterval(partnerScrollInterval);
-        partnerScrollInterval = setInterval(() => {
-          if(!isPartnerPaused && partnersTrack) {
-            partnersTrack.scrollLeft += 1.5;
-            if(partnersTrack.scrollLeft >= partnersTrack.scrollWidth / 2) {
-              partnersTrack.scrollLeft = 0;
-            }
-          }
-        }, 30);
-      }
-
-      (window as any).scrollPartners = function(direction: number) {
-        isPartnerPaused = true;
-        clearTimeout(partnerTimeout);
-        if (partnersTrack) partnersTrack.scrollBy({ left: direction * 250, behavior: 'smooth' });
-        partnerTimeout = setTimeout(() => { isPartnerPaused = false; }, 5000);
-      };
-      
-      startAutoScrollPartners();
 
       // 4. Galeria de Imagens - CARREGAR TODAS AS IMAGENS E VÍDEOS
       const galleryTrack = document.getElementById('gallery-track');
@@ -148,6 +119,7 @@ export default function SobreNosPage() {
                   }
                   
                   const lower = url.toLowerCase();
+                  if (lower.includes('/images/swiss park/')) return;
                   let type = 'img';
                   
                   // Identificar se é vídeo
@@ -182,94 +154,73 @@ export default function SobreNosPage() {
         console.log('⚠️ Galeria não pôde ser carregada');
       }
 
-      // Build gallery items using DOM methods to avoid complex escape sequences
-      const numSets = 3; // Reduzir duplicação já que temos muitas imagens
+      // Keep the gallery still until the visitor navigates it.
+      const gallerySetCount = 1;
       console.log('🎨 Gerando a galeria (DOM) com', galleryData.length, 'imagens');
-
-      const frag = document.createDocumentFragment();
-
-      for (let i = 0; i < numSets; i++) {
-        galleryData.forEach((item, index) => {
-          const thumbnailUrl = item.type === 'vid'
-            ? 'https://via.placeholder.com/260x260/1a2b45/FFFFFF?text=Video'
-            : item.url;
-
-          const imgId = 'gallery-img-' + i + '-' + index;
-
-          const itemDiv = document.createElement('div');
-          itemDiv.className = 'shrink-0 w-[220px] h-[220px] md:w-[260px] md:h-[260px] bg-[#223A5E] rounded-3xl overflow-hidden border-[4px] md:border-[6px] border-[#e2e8f0] relative cursor-pointer group shadow-lg flex items-center justify-center';
-          itemDiv.addEventListener('click', () => {
-            try { window.openLightbox(item.url, item.type); } catch (e) { console.warn('openLightbox missing', e); }
-          });
-
-          const img = document.createElement('img');
-          img.id = imgId;
-          img.src = thumbnailUrl;
-          img.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110';
-          img.alt = 'Trabalho ' + (item.cliente || 'Atlântico');
-          img.loading = 'lazy';
-          img.onload = () => console.log('✅ Imagem carregada:', item.cliente);
-          img.onerror = function () {
-            console.error('❌ Erro ao carregar:', item.cliente, this.src);
-            this.onerror = null;
-            this.style.display = 'none';
-            const fallback = document.createElement('div');
-            fallback.className = 'text-center text-white p-4';
-            fallback.innerHTML = '<i class="fa-solid fa-image-slash text-4xl mb-2 opacity-50"></i><p class="text-sm font-bold">' + (item.cliente || 'Imagem') + '</p><p class="text-xs opacity-70 mt-1">Imagem não disponível</p>';
-            itemDiv.appendChild(fallback);
-          };
-
-          itemDiv.appendChild(img);
-
-          // optional: add play icon and client label as HTML
-          if (item.type === 'vid') {
-            const playWrap = document.createElement('div');
-            playWrap.className = 'absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors';
-            playWrap.innerHTML = '<i class="fa-solid fa-play text-white/80 text-4xl drop-shadow-md"></i>';
-            itemDiv.appendChild(playWrap);
-          }
-
-          if (item.cliente) {
-            const clienteLabel = document.createElement('div');
-            clienteLabel.className = 'absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity';
-            clienteLabel.innerHTML = '<p class="text-white text-sm font-bold truncate">' + item.cliente + '</p>';
-            itemDiv.appendChild(clienteLabel);
-          }
-
-          frag.appendChild(itemDiv);
-        });
-      }
 
       if (galleryTrack) {
         galleryTrack.innerHTML = '';
-        galleryTrack.appendChild(frag);
-        console.log('✅ Galeria inserida no DOM (DOM build)');
-      }
+        for (let setIndex = 0; setIndex < gallerySetCount; setIndex++) {
+          galleryData.forEach(item => {
+            const thumbnailUrl = item.type === 'vid'
+              ? 'https://via.placeholder.com/260x260/1a2b45/FFFFFF?text=Video'
+              : item.url;
 
-      let gallerySetWidth = 0;
-      setTimeout(() => {
-        if (galleryTrack) {
-          gallerySetWidth = galleryTrack.scrollWidth / numSets;
-          galleryTrack.scrollTo({ left: gallerySetWidth * 3, behavior: 'instant' });
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'shrink-0 w-[220px] h-[220px] md:w-[260px] md:h-[260px] bg-[#223A5E] rounded-3xl overflow-hidden relative cursor-pointer group shadow-lg flex items-center justify-center';
+            itemDiv.style.border = '0.2px solid #e2e8f0';
+            itemDiv.addEventListener('click', () => {
+              try { window.openLightbox(item.url, item.type); } catch (e) { console.warn('openLightbox missing', e); }
+            });
+
+            const img = document.createElement('img');
+            img.src = thumbnailUrl;
+            img.className = 'w-full h-full object-cover';
+            img.alt = 'Trabalho ' + (item.cliente || 'Atlântico');
+            img.loading = 'lazy';
+            img.onerror = () => {
+              console.warn('Imagem indisponível removida da galeria:', item.url);
+              itemDiv.remove();
+            };
+            itemDiv.appendChild(img);
+
+            if (item.type === 'vid') {
+              const playWrap = document.createElement('div');
+              playWrap.className = 'absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors';
+              playWrap.innerHTML = '<i class="fa-solid fa-play text-white/80 text-4xl drop-shadow-md"></i>';
+              itemDiv.appendChild(playWrap);
+            }
+
+            if (item.cliente) {
+              const clienteLabel = document.createElement('div');
+              clienteLabel.className = 'absolute bottom-0 left-0 right-0 translate-y-2 opacity-0 bg-gradient-to-t from-[#071426] via-[#0e1a2b]/90 to-transparent p-4 pt-10 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100';
+              const labelText = document.createElement('p');
+              labelText.className = 'text-white text-sm font-bold truncate drop-shadow-md';
+              labelText.textContent = item.cliente;
+              clienteLabel.appendChild(labelText);
+              itemDiv.appendChild(clienteLabel);
+            }
+
+            galleryTrack.appendChild(itemDiv);
+          });
         }
-      }, 100);
-
-      (window as any).scrollGallery = function(direction: number) {
-        if (galleryTrack) galleryTrack.scrollBy({ left: direction * 450, behavior: 'smooth' });
-      };
-
-      if (galleryTrack) {
-        galleryTrack.addEventListener('scroll', () => {
-          if (!gallerySetWidth || !galleryTrack) return;
-          
-          if (galleryTrack.scrollLeft < gallerySetWidth * 1.5) {
-            galleryTrack.scrollTo({ left: galleryTrack.scrollLeft + (gallerySetWidth * 2), behavior: 'instant' });
-          }
-          else if (galleryTrack.scrollLeft > gallerySetWidth * 4.5) {
-            galleryTrack.scrollTo({ left: galleryTrack.scrollLeft - (gallerySetWidth * 2), behavior: 'instant' });
-          }
-        });
       }
+
+      window.scrollGallery = (direction: number) => {
+        if (!galleryTrack) return;
+
+        const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+        if (maxScroll <= 0) return;
+
+        const nextScroll = galleryTrack.scrollLeft + direction * Math.min(450, galleryTrack.clientWidth * 0.75);
+        if (nextScroll >= maxScroll) {
+          galleryTrack.scrollTo({ left: 0, behavior: 'instant' });
+        } else if (nextScroll <= 0) {
+          galleryTrack.scrollTo({ left: maxScroll, behavior: 'instant' });
+        } else {
+          galleryTrack.scrollTo({ left: nextScroll, behavior: 'smooth' });
+        }
+      };
 
       // 5. Lightbox (Modal da Galeria)
       const lightbox = document.getElementById('lightbox');
@@ -319,6 +270,12 @@ export default function SobreNosPage() {
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .dropdown-bridge { padding-top: 1.5rem; }
         .fade-img { transition: opacity 1.5s ease-in-out; }
+        @keyframes partner-marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .partner-marquee { animation: partner-marquee 45s linear infinite; }
+        .partner-carousel:hover .partner-marquee { animation-play-state: paused; }
         
         /* Animações */
         @keyframes fadeInUp {
@@ -452,24 +409,8 @@ export default function SobreNosPage() {
 
         {/* HEADER */}
         <header className="fixed top-0 w-full z-50 bg-[#0E1A2B] shadow-lg flex items-center justify-between px-4 md:px-10 py-3 md:py-4 animate-slideDown">
-          <div className="flex items-center gap-4 md:gap-12">
-            <div className="relative animate-fadeIn">
-              <button id="menu-btn" className="text-white hover:text-accent transition-colors flex flex-col gap-1 md:gap-1.5">
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-                <span className="w-7 md:w-8 h-[3px] md:h-1 bg-white block"></span>
-              </button>
-              <div id="dropdown" className="hidden absolute top-full left-0 mt-5 md:mt-6 w-56 bg-[#223A5E] shadow-2xl border border-dark rounded-b-md overflow-hidden flex-col z-50">
-                <a href="/sobre-nos" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.aboutUs}</a>
-                <a href="/#servicos" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg md:hidden">{t.nav.services.toUpperCase()}</a>
-                <a href="/fale-conosco" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg md:hidden">{t.nav.contactUs}</a>
-                <a href="/sobre-nos#clientes" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.clients}</a>
-                <a href="/sobre-nos#parceiros" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium border-b border-dark/20 text-lg">{t.nav.partners}</a>
-                <a href="/sobre-nos#galeria" className="mobile-link px-5 py-4 hover:bg-[#15253F] hover:text-accent transition-colors font-medium text-lg">{t.nav.gallery}</a>
-              </div>
-            </div>
-            <nav className="flex gap-4 md:gap-8 font-bold tracking-wider text-sm md:text-xl uppercase items-center h-full mt-1 animate-fadeIn animate-delay-100">
-              <div className="relative group">
+          <nav className="min-w-0 flex-1 overflow-x-auto flex gap-2 md:gap-6 font-bold tracking-wide text-[10px] sm:text-xs md:text-sm lg:text-base uppercase items-center whitespace-nowrap animate-fadeIn animate-delay-100">
+              <div className="relative group shrink-0">
                 <a href="/#servicos" className="hover:text-accent transition-colors text-white py-2 block">{t.nav.services}</a>
                 <div id="desktop-dropdown-menu" className="absolute top-full left-0 hidden md:group-hover:block dropdown-bridge z-50">
                   <div className="w-72 bg-[#15253F] shadow-2xl border border-dark rounded-md overflow-hidden flex flex-col">
@@ -486,10 +427,12 @@ export default function SobreNosPage() {
                   </div>
                 </div>
               </div>
-              <a href="/fale-conosco" className="hover:text-accent transition-colors text-white py-2 block">{t.nav.contactUs}</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
+              <a href="/sobre-nos#sobre" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.aboutUs}</a>
+              <a href="/sobre-nos#clientes" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.partners}</a>
+              <a href="/sobre-nos#galeria" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.gallery}</a>
+              <a href="/fale-conosco" className="shrink-0 hover:text-accent transition-colors text-white py-2 block">{t.nav.contactUs}</a>
+          </nav>
+          <div className="flex shrink-0 items-center gap-2 md:gap-4">
             <div className="cursor-pointer hover:opacity-80 transition-opacity animate-fadeIn animate-delay-200" onClick={() => window.location.href='/'}>
               <img src="/images/logo-atlatico-vector.png" alt="Atlântico Logo" className="h-10 md:h-14 object-contain" />
             </div>
@@ -499,7 +442,7 @@ export default function SobreNosPage() {
 
         <main className="pt-24 pb-12 flex flex-col items-center w-full">
           {/* 1. SEÇÃO: SOBRE NÓS */}
-          <section className="w-full max-w-[1400px] px-4 md:px-10 mt-8 mb-16">
+          <section id="sobre" className="w-full max-w-[1400px] px-4 md:px-10 mt-8 mb-16">
             <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50 animate-fadeInUp">
               <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.about.title}</h2>
             </div>
@@ -549,23 +492,13 @@ export default function SobreNosPage() {
           </section>
 
           {/* 3. SEÇÃO: PARCEIROS */}
-          <section id="parceiros" className="w-full max-w-[1400px] px-4 md:px-10 mb-16 relative">
-            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50 animate-fadeInUp">
-              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.partners.title}</h2>
-            </div>
-
-            <div className="relative w-full flex items-center bg-[#0a111c]/60 py-6 rounded-2xl border border-primary/30 animate-fadeInUp animate-delay-200">
-              <button onClick={() => (window as any).scrollPartners(-1)} className="absolute left-0 z-20 bg-white text-dark rounded-full w-10 h-10 flex items-center justify-center shadow-lg -ml-4 hover:bg-accent hover:text-white transition-colors">
-                <i className="fa-solid fa-play rotate-180 text-xl pl-1"></i>
-              </button>
-
-              <div id="partners-track" className="flex gap-4 md:gap-6 overflow-x-hidden w-full px-8 py-2 items-center h-40">
+          <section className="w-full max-w-[1400px] px-4 md:px-10 mb-16 relative">
+            <div className="partner-carousel relative w-full overflow-hidden bg-[#0a111c]/60 py-8 rounded-2xl border border-primary/30 animate-fadeInUp animate-delay-200">
+              <div className="h-48 overflow-x-clip overflow-y-visible px-8 py-4">
+                <div id="partners-track" className="partner-marquee flex w-max items-center">
                 {/* Itens via JS */}
+                </div>
               </div>
-
-              <button onClick={() => (window as any).scrollPartners(1)} className="absolute right-0 z-20 bg-white text-dark rounded-full w-10 h-10 flex items-center justify-center shadow-lg -mr-4 hover:bg-accent hover:text-white transition-colors">
-                <i className="fa-solid fa-play text-xl pl-1"></i>
-              </button>
             </div>
           </section>
 
@@ -575,22 +508,17 @@ export default function SobreNosPage() {
               <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.gallery.title}</h2>
             </div>
 
-            <div className="relative w-full flex items-center justify-center mt-4 group animate-fadeInUp animate-delay-200">
-              {/* Seta Esquerda */}
-              <button onClick={() => (window as any).scrollGallery(-1)} className="absolute left-0 md:left-2 z-20 text-white hover:text-accent transition-colors drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] opacity-80 hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-16 h-32 md:w-20 md:h-40">
+            <div className="gallery-carousel relative w-full overflow-hidden mt-4 animate-fadeInUp animate-delay-200">
+              <button onClick={() => window.scrollGallery(-1)} aria-label="Imagens anteriores" className="absolute left-0 top-1/2 -translate-y-1/2 z-20 text-white hover:text-accent transition-colors drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-12 h-20 md:w-16 md:h-28">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-
-              {/* Grade de Imagens */}
-              <div id="gallery-track" className="grid grid-rows-2 grid-flow-col gap-4 md:gap-6 overflow-x-auto no-scrollbar w-full py-4 h-[500px] md:h-[600px] items-center">
+              <div id="gallery-track" className="grid grid-rows-2 grid-flow-col gap-4 md:gap-6 overflow-x-auto no-scrollbar w-full py-4 h-[500px] md:h-[600px] items-center px-12 md:px-16">
                 {/* Itens injetados via JS */}
               </div>
-
-              {/* Seta Direita */}
-              <button onClick={() => (window as any).scrollGallery(1)} className="absolute right-0 md:right-2 z-20 text-white hover:text-accent transition-colors drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] opacity-80 hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-16 h-32 md:w-20 md:h-40">
+              <button onClick={() => window.scrollGallery(1)} aria-label="Próximas imagens" className="absolute right-0 top-1/2 -translate-y-1/2 z-20 text-white hover:text-accent transition-colors drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-12 h-20 md:w-16 md:h-28">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -617,6 +545,7 @@ export default function SobreNosPage() {
               <span className="font-bold text-sm md:text-lg">atlanticosts@atlanticosts.com.br</span>
             </a>
           </div>
+          <p className="text-center mt-6 text-sm text-gray-300">{t.footer.administrativeHours}</p>
           <div className="text-center mt-8 text-xs text-gray-500">
             {t.footer.copyright}
           </div>
