@@ -580,7 +580,6 @@ const rawData = {
 
 const categorias = ["Recuperação Estrutural", "Navios e Plataformas", "Levantamento e Registro", "Hidroelétricas e Barragens", "Inspeção e Vistoria", "Dragagem e Sondagem", "Resgate e Salvatagem", "Mergulho Especializado", "Dutos e Cabos Submarinos", "Tratamento de Água"];
 
-let servicoImagens = {};
 let dadosServicos = {};
 
 const categoriesContainer = document.getElementById('categories-container');
@@ -866,136 +865,78 @@ carouselTrack.addEventListener('scroll', () => {
   });
 });
 
-// Mapeamento de categorias para as chaves usadas no JSON
-const servicoMapping = {
-  'Recuperação Estrutural': 'RECUPERAÇÃO ESTRUTURAL',
-  'Navios e Plataformas': 'NAVIOS E PLATAFORMAS',
-  'Levantamento e Registro': 'LEVANTAMENTO E REGISTRO',
-  'Hidroelétricas e Barragens': 'HIDROELÉTRICAS E BARRAGENS',
-  'Inspeção e Vistoria': 'INSPEÇÃO E VISTORIA',
-  'Dragagem e Sondagem': 'DRAGAGEM E SONDAGEM',
-  'Resgate e Salvatagem': 'RESGATE E SALVATAGEM',
-  'Mergulho Especializado': 'MERGULHO ESPECIALIZADO',
-  'Dutos e Cabos Submarinos': 'DUTOS E CABOS SUBMARINOS',
-  'Tratamento de Água': 'TRATAMENTO DE ÁGUA'
+const imagensPorTitulo = {
+  'Recuperação de estruturas em concreto e aço': '/images/CODESP/defensa 03e.JPG',
+  'Reforço estrutural de estacas de carga, prancha e laje': '/images/4S ENGENHARIA/FOTOS/DSC07680.JPG',
+  'Reforço estrutural de pilares, estacas e pontes': '/images/FINGER & SOMMER/PONTE JAGUARIÚNA/Fotos/fotos fornecidas pelo roger/IMG-20191204-WA0042.jpg',
+  'Recuperação estrutural de píer e dolfins': '/images/AGEO TERMINAIS/DSC01722.JPG',
+  'Aplicação de massa epóxi': '/images/CUTRALE/DSC06682.JPG',
+  'Concretagem com argamassa de alto desempenho': '/images/AXXO/DSC00676.JPG',
+  'Demolição de concreto': '/images/AXXO/DSC00684.JPG',
+  'Corte e solda submarina em estruturas de aço': '/images/CODESP/DSC00544.JPG',
+  'Derrocagem a frio ou a fogo': '/images/CHIP BELEM/DSC08826.JPG',
+  'Recuperação e reforço de hidrelétricas e barragens': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
+  'Colocação/retirada de stop logs e painéis': '/images/FKB - COMPORTAS/IMG_9267.JPG',
+  'Vedação de ensecadeiras': '/images/CTG BRASIL/DSC01377-comporta-orientada.jpg',
+  'Retirada/colocação de caixão metálico': '/images/FKB - COMPORTAS/IMG_9293.JPG',
+  'Colocação de anteparos e cabos de aço': '/images/FKB - COMPORTAS/IMG_9288.JPG',
+  'Inspeção em comportas e soleiras': '/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg',
+  'Inspeção tátil nas grades': '/images/CTG BRASIL 2023/DSC02856.JPG',
+  'Vistoria em painéis de vedação': '/images/CTG BRASIL/DSC01408  Vista geral de jusante.JPG',
+  'Inspeção visual submarina': '/images/NAVIOS/DSC06301.JPG',
+  'Vistoria com foto e vídeo': '/images/NAVIOS/DSC06324.JPG',
+  'Inspeção com monitoramento de superfície': '/images/SABESP 2021/DSC02626.JPG',
+  'Ensaios não destrutivos': '/images/AGEO/DSC05195.JPG',
+  'Vistorias em ambientes confinados': '/images/PREFEITURA DE SANTOS/WhatsApp Image 2020-07-24 at 13.59.59.jpeg',
+  'Fiscalização e administração em obras portuárias': '/images/CMA CGM/TOVO1041.JPG',
+  'Emissão de relatório descritivo de inspeção': '/images/CODESP/DSC07101.JPG',
+  'Vistoria para substituição e extensão de docagem': '/images/CMA CGM/YLHT5300.JPG',
+  'Tampoamento / Bujonamento': '/images/NAVIOS 2022/FHD0087.JPG',
+  'Calefação de vazamentos': '/images/NAVIOS 2022/FHD0453.JPG',
+  'Fotografia e filmagem subaquática': '/images/NAVIOS/DSC06301.JPG',
+  'Levantamentos topográfico e cadastral': '/images/CODESP/DSC07101.JPG',
+  'Batimetria / Topobatimetria': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
+  'Dragagem / Dragagem Subaquática': '/images/CHIP BELEM/DSC08831.JPG',
+  'Sondagens': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
+  'Coleta de material': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
+  'Acompanhamento de cravação de estacas': '/images/4S ENGENHARIA/FOTOS/DSC07685.JPG',
+  'Inspeção, lançamento e manutenção de emissários': '/images/SABESP 2025/DSC00884.JPG',
+  'Oleodutos/Gasodutos/Slamorodutos': '/images/SABESP 2025/DSC00873.JPG',
+  'Cabos elétricos submarinos': '/images/SABESP 2021/DSC02623.JPG',
+  'Cabos de fibra ótica': '/images/LOG-IN_PROINDE/DSC00491.JPG',
+  'Resgate e Salvatagem Naval': '/images/CODESP/IMG_20181009_153306910_HDR.jpg',
+  'Busca, remoção e salvamento de estruturas flutuantes': '/images/REDRAM/WhatsApp Image 2021-07-26 at 11.39.24.jpeg',
+  'Mergulho em águas contaminadas': '/images/DOW/PIC00107.JPG',
+  'Manutenção em fábricas de papel e celulose': '/images/BRACELL/WhatsApp Image 2025-09-02 at 16.26.27.jpeg',
+  'Serviço em ETE (Estação de Tratamento de Esgoto/Água)': '/images/BRK AMBIENTAL/DSC08528.JPG'
 };
 
-// Função para embaralhar array
-function embaralharArray(array) {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
+const currentLocale = window.currentLocale || 'pt';
+const translations = window.rawDataTranslations || {};
+const translatedData = translations[currentLocale];
+
+for (const cat in rawData) {
+  const sourceData = translatedData && translatedData[cat] && translatedData[cat].items
+    ? translatedData[cat].items
+    : rawData[cat];
+
+  dadosServicos[cat] = sourceData.map((info, idx) => {
+    const originalTitle = rawData[cat][idx].t;
+    const imagem = imagensPorTitulo[originalTitle];
+    if (!imagem) throw new Error('Imagem não definida para o serviço: ' + originalTitle);
+
+    return {
+      titulo: info.t,
+      shortDesc: info.c,
+      longDesc: info.l,
+      imagem
+    };
+  });
 }
 
-// Carregar imagens e renderizar
-console.log('🔄 Iniciando carregamento...');
-fetch('/data/gallery-data.json')
-  .then(response => response.json())
-  .then(galleryData => {
-    console.log('✅ Gallery data carregado:', galleryData.estatisticas);
-    
-    // Mapear imagens por serviço (nome normal como chave)
-    categorias.forEach(servico => {
-      servicoImagens[servico] = [];
-    });
-    
-    // Percorre todos os clientes e agrupa imagens por serviço
-    Object.values(galleryData.clientes).forEach(cliente => {
-      if (cliente.servicos && cliente.imagens) {
-        cliente.servicos.forEach(servicoCliente => {
-          // Encontra a categoria correspondente
-          const categoriaKey = Object.keys(servicoMapping).find(
-            key => servicoMapping[key] === servicoCliente
-          );
-          
-          if (categoriaKey && servicoImagens[categoriaKey]) {
-            servicoImagens[categoriaKey].push(...cliente.imagens);
-          }
-          
-          // Adiciona imagens "Diversos" como fallback para todos os serviços
-          if (servicoCliente === 'Diversos') {
-            Object.keys(servicoMapping).forEach(cat => {
-              if (servicoImagens[cat]) {
-                servicoImagens[cat].push(...cliente.imagens);
-              }
-            });
-          }
-        });
-      }
-    });
-    
-    // Embaralha as imagens de cada serviço
-    Object.keys(servicoImagens).forEach(servico => {
-      servicoImagens[servico] = embaralharArray(servicoImagens[servico]);
-    });
-    
-    console.log('✅ Imagens mapeadas por serviço:');
-    Object.keys(servicoImagens).forEach(s => {
-      console.log('  ' + s + ': ' + servicoImagens[s].length + ' imagens');
-    });
-    
-    // Criar dadosServicos com distribuição balanceada de imagens
-    for (const cat in rawData) {
-      const imgs = servicoImagens[cat] || [];
-      
-      if (imgs.length === 0) {
-        console.warn('⚠️ Nenhuma imagem encontrada para:', cat);
-        // Usa imagens de outros serviços como fallback
-        const fallbackImages = Object.values(servicoImagens).flat();
-        imgs.push(...embaralharArray(fallbackImages).slice(0, 10));
-      }
-      
-      // Buscar dados traduzidos se disponíveis
-      const currentLocale = window.currentLocale || 'pt';
-      const translations = window.rawDataTranslations || {};
-      const translatedData = translations[currentLocale];
-      
-      let sourceData = rawData[cat];
-      if (translatedData && translatedData[cat] && translatedData[cat].items) {
-        sourceData = translatedData[cat].items;
-      }
-      
-      dadosServicos[cat] = sourceData.map((info, idx) => ({
-        titulo: info.t,
-        shortDesc: info.c,
-        longDesc: info.l,
-        // Distribui as imagens de forma circular para evitar repetição
-        imagem: imgs[idx % imgs.length] || 'https://via.placeholder.com/800x600/223A5E/FFFFFF?text=Atlântico'
-      }));
-    }
-    
-    console.log('✅ Dados dos serviços preparados');
-    console.log('✅ Renderizando interface...');
-    renderizarBotoes();
-    renderizarCards();
-  })
-  .catch(error => {
-    console.error('❌ Erro ao carregar gallery-data.json:', error);
-    // Fallback com imagens genéricas
-    for (const cat in rawData) {
-      // Buscar dados traduzidos se disponíveis
-      const currentLocale = window.currentLocale || 'pt';
-      const translations = window.rawDataTranslations || {};
-      const translatedData = translations[currentLocale];
-      
-      let sourceData = rawData[cat];
-      if (translatedData && translatedData[cat] && translatedData[cat].items) {
-        sourceData = translatedData[cat].items;
-      }
-      
-      dadosServicos[cat] = sourceData.map((info, idx) => ({
-        titulo: info.t,
-        shortDesc: info.c,
-        longDesc: info.l,
-        imagem: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop&q=80'
-      }));
-    }
-    renderizarBotoes();
-    renderizarCards();
-  });
+console.log('✅ Imagens fixas dos serviços preparadas');
+renderizarBotoes();
+renderizarCards();
 
 }, 500); // Delay de 500ms para garantir que o DOM esteja pronto
 `}

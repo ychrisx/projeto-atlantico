@@ -101,7 +101,7 @@ export default function ServicosPage() {
         {/* HERO PAGE */}
         <section id="hero" className="relative h-screen w-full flex items-end pb-20 justify-start px-6 md:px-10 pt-24">
           <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1682687981974-c5ef2111640c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Mergulhador" className="w-full h-full object-cover" />
+            <img src="/images/NAVIOS/DSC06324.JPG" alt="Mergulhador técnico em inspeção subaquática" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
           </div>
           <div className="relative z-10 max-w-2xl">
@@ -179,11 +179,7 @@ dropdownServiceLinks.forEach(btn => {
 });
 
 const categorias = ["Recuperação Estrutural", "Navios e Plataformas", "Levantamento e Registro", "Hidroelétricas e Barragens", "Inspeção e Vistoria", "Dragagem e Sondagem", "Resgate e Salvatagem", "Mergulho Especializado", "Dutos e Cabos Submarinos", "Tratamento de Água"];
-`}
-      </Script>
 
-      <Script id="servicos-data" strategy="lazyOnload">
-        {`
 const rawData = {
   "Recuperação Estrutural": [
     { t: "Recuperação de estruturas em concreto e aço", c: "Reparos especializados em superfícies submersas.", l: "Executamos técnicas avançadas para restaurar a integridade estrutural de elementos em concreto e aço afetados pela corrosão ou desgaste mecânico em ambientes subaquáticos. Utilizamos materiais de alta resistência que curam debaixo d'água, garantindo vida útil prolongada." },
@@ -206,11 +202,7 @@ const rawData = {
     { t: "Inspeção tátil nas grades", c: "Verificação da integridade do sistema de filtragem.", l: "Em ambientes de visibilidade zero ou áreas confinadas, realizamos inspeções rigorosas por contato tátil, mapeando obstruções por troncos, deformações no metal e garantindo o fluxo desimpedido para as turbinas." },
     { t: "Vistoria em painéis de vedação", c: "Checagem minuciosa contra vazamentos e desgastes.", l: "Antes da secagem de uma unidade geradora, validamos se os painéis estão perfeitamente assentados, checando as vedações periféricas para evitar acidentes com a súbita entrada de água." }
   ],
-`}
-      </Script>
 
-      <Script id="servicos-data-2" strategy="lazyOnload">
-        {`
   "Inspeção e Vistoria": [
     { t: "Inspeção visual submarina", c: "Análise direta de cascos e fundações.", l: "O modo mais eficaz de avaliar avarias preliminares. O mergulhador técnico relata as condições do alvo em tempo real, fornecendo informações essenciais para o planejamento de reparos." },
     { t: "Vistoria com foto e vídeo", c: "Registro multimídia de alta definição.", l: "Utilizamos câmeras subaquáticas 4K e iluminação especializada para criar um laudo visual indiscutível. Perfeito para fins de seguros, documentação de avarias em navios e comprovação de término de obra." },
@@ -236,11 +228,7 @@ const rawData = {
     { t: "Coleta de material", c: "Amostragem de solo e sedimentos focada em laudos.", l: "Coletamos amostras indeformadas do fundo do mar para análise em laboratórios ambientais, determinando o grau de contaminação, tipo de solo e garantindo as licenças necessárias para intervenções marinhas." },
     { t: "Acompanhamento de cravação de estacas", c: "Orientação e alinhamento durante obras de fundação.", l: "Monitoramos e orientamos, diretamente do fundo, as pesadas manobras dos martelos de bate-estacas, certificando-se de que a camisa metálica não atinja obstruções e siga o prumo projetado na obra." }
   ],
-`}
-      </Script>
 
-      <Script id="servicos-data-3" strategy="lazyOnload">
-        {`
   "Dutos e Cabos Submarinos": [
     { t: "Inspeção, lançamento e manutenção de emissários", c: "Cuidado integral com sistemas de saneamento costeiro.", l: "Instalamos tubulações gigantescas no fundo do mar, realizamos lastreamento com blocos de concreto (saddles) e mantemos os difusores livres de cracas para garantir a correta dispersão de efluentes tratados." },
     { t: "Oleodutos/Gasodutos/Slamorodutos", c: "Suporte especializado à infraestrutura de óleo e gás.", l: "Lançamento e enterramento de dutos flexíveis (rígidos e spools) focados na interligação de poços ao terminal costeiro. Realizamos monitoramento contra scour (erosão ao redor do tubo) e reparos em revestimentos térmicos." },
@@ -259,127 +247,75 @@ const rawData = {
     { t: "Serviço em ETE (Estação de Tratamento de Esgoto/Água)", c: "Limpeza e recuperação de ativos de saneamento.", l: "Operações subaquáticas em reatores, tanques de aeração e decantadores. Fazemos a remoção de lodo, conserto de raspadores e troca de difusores de ar sem a necessidade de secar o tanque, mantendo o abastecimento público." }
   ]
 };
-`}
-      </Script>
 
-      <Script id="servicos-render" strategy="lazyOnload">
-        {`
-// Carrega os dados da galeria
-let galleryData = null;
-let imagensPorServico = {};
-
-// Função para carregar dados da galeria
-async function carregarGalleryData() {
-  try {
-    const response = await fetch('/data/gallery-data.json');
-    galleryData = await response.json();
-    processarImagensPorServico();
-  } catch (error) {
-    console.error('Erro ao carregar gallery-data.json:', error);
-  }
-}
-
-// Mapeia serviços para suas imagens disponíveis
-function processarImagensPorServico() {
-  const servicoMapping = {
-    'Recuperação Estrutural': 'RECUPERAÇÃO ESTRUTURAL',
-    'Navios e Plataformas': 'NAVIOS E PLATAFORMAS',
-    'Levantamento e Registro': 'LEVANTAMENTO E REGISTRO',
-    'Hidroelétricas e Barragens': 'HIDROELÉTRICAS E BARRAGENS',
-    'Inspeção e Vistoria': 'INSPEÇÃO E VISTORIA',
-    'Dragagem e Sondagem': 'DRAGAGEM E SONDAGEM',
-    'Resgate e Salvatagem': 'RESGATE E SALVATAGEM',
-    'Mergulho Especializado': 'MERGULHO ESPECIALIZADO',
-    'Dutos e Cabos Submarinos': 'DUTOS E CABOS SUBMARINOS',
-    'Tratamento de Água': 'TRATAMENTO DE ÁGUA'
-  };
-  
-  // Inicializa arrays vazios para cada serviço
-  Object.keys(servicoMapping).forEach(servico => {
-    imagensPorServico[servico] = [];
-  });
-  
-  // Percorre todos os clientes e agrupa imagens por serviço
-  Object.values(galleryData.clientes).forEach(cliente => {
-    cliente.servicos.forEach(servicoCliente => {
-      const servicoKey = Object.keys(servicoMapping).find(
-        key => servicoMapping[key] === servicoCliente
-      );
-      
-      if (servicoKey && cliente.imagens) {
-        imagensPorServico[servicoKey].push(...cliente.imagens);
-      }
-      
-      // Adiciona imagens "Diversos" a todos os serviços como fallback
-      if (servicoCliente === 'Diversos' && cliente.imagens) {
-        Object.keys(servicoMapping).forEach(servico => {
-          imagensPorServico[servico].push(...cliente.imagens);
-        });
-      }
-    });
-  });
-  
-  // Embaralha as imagens de cada serviço
-  Object.keys(imagensPorServico).forEach(servico => {
-    imagensPorServico[servico] = embaralharArray(imagensPorServico[servico]);
-  });
-}
-
-// Função auxiliar para embaralhar array
-function embaralharArray(array) {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
-// Obtém uma imagem para um serviço e índice específico
-function obterImagemParaServico(servico, index) {
-  const imagens = imagensPorServico[servico] || [];
-  
-  if (imagens.length === 0) {
-    // Fallback para imagem genérica
-    return 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop';
-  }
-  
-  // Rotaciona através das imagens disponíveis
-  return imagens[index % imagens.length];
-}
+const imagensPorTitulo = {
+  'Recuperação de estruturas em concreto e aço': '/images/CODESP/defensa 03e.JPG',
+  'Reforço estrutural de estacas de carga, prancha e laje': '/images/4S ENGENHARIA/FOTOS/DSC07680.JPG',
+  'Reforço estrutural de pilares, estacas e pontes': '/images/FINGER & SOMMER/PONTE JAGUARIÚNA/Fotos/fotos fornecidas pelo roger/IMG-20191204-WA0042.jpg',
+  'Recuperação estrutural de píer e dolfins': '/images/AGEO TERMINAIS/DSC01722.JPG',
+  'Aplicação de massa epóxi': '/images/CUTRALE/DSC06682.JPG',
+  'Concretagem com argamassa de alto desempenho': '/images/AXXO/DSC00676.JPG',
+  'Demolição de concreto': '/images/AXXO/DSC00684.JPG',
+  'Corte e solda submarina em estruturas de aço': '/images/CODESP/DSC00544.JPG',
+  'Derrocagem a frio ou a fogo': '/images/CHIP BELEM/DSC08826.JPG',
+  'Recuperação e reforço de hidrelétricas e barragens': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
+  'Colocação/retirada de stop logs e painéis': '/images/FKB - COMPORTAS/IMG_9267.JPG',
+  'Vedação de ensecadeiras': '/images/CTG BRASIL/DSC01377-comporta-orientada.jpg',
+  'Retirada/colocação de caixão metálico': '/images/FKB - COMPORTAS/IMG_9293.JPG',
+  'Colocação de anteparos e cabos de aço': '/images/FKB - COMPORTAS/IMG_9288.JPG',
+  'Inspeção em comportas e soleiras': '/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg',
+  'Inspeção tátil nas grades': '/images/CTG BRASIL 2023/DSC02856.JPG',
+  'Vistoria em painéis de vedação': '/images/CTG BRASIL/DSC01408  Vista geral de jusante.JPG',
+  'Inspeção visual submarina': '/images/NAVIOS/DSC06301.JPG',
+  'Vistoria com foto e vídeo': '/images/NAVIOS/DSC06324.JPG',
+  'Inspeção com monitoramento de superfície': '/images/SABESP 2021/DSC02626.JPG',
+  'Ensaios não destrutivos': '/images/AGEO/DSC05195.JPG',
+  'Vistorias em ambientes confinados': '/images/PREFEITURA DE SANTOS/WhatsApp Image 2020-07-24 at 13.59.59.jpeg',
+  'Fiscalização e administração em obras portuárias': '/images/CMA CGM/TOVO1041.JPG',
+  'Emissão de relatório descritivo de inspeção': '/images/CODESP/DSC07101.JPG',
+  'Vistoria para substituição e extensão de docagem': '/images/CMA CGM/YLHT5300.JPG',
+  'Tampoamento / Bujonamento': '/images/NAVIOS 2022/FHD0087.JPG',
+  'Calefação de vazamentos': '/images/NAVIOS 2022/FHD0453.JPG',
+  'Fotografia e filmagem subaquática': '/images/NAVIOS/DSC06301.JPG',
+  'Levantamentos topográfico e cadastral': '/images/CODESP/DSC07101.JPG',
+  'Batimetria / Topobatimetria': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
+  'Dragagem / Dragagem Subaquática': '/images/CHIP BELEM/DSC08831.JPG',
+  'Sondagens': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
+  'Coleta de material': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
+  'Acompanhamento de cravação de estacas': '/images/4S ENGENHARIA/FOTOS/DSC07685.JPG',
+  'Inspeção, lançamento e manutenção de emissários': '/images/SABESP 2025/DSC00884.JPG',
+  'Oleodutos/Gasodutos/Slamorodutos': '/images/SABESP 2025/DSC00873.JPG',
+  'Cabos elétricos submarinos': '/images/SABESP 2021/DSC02623.JPG',
+  'Cabos de fibra ótica': '/images/LOG-IN_PROINDE/DSC00491.JPG',
+  'Resgate e Salvatagem Naval': '/images/CODESP/IMG_20181009_153306910_HDR.jpg',
+  'Busca, remoção e salvamento de estruturas flutuantes': '/images/REDRAM/WhatsApp Image 2021-07-26 at 11.39.24.jpeg',
+  'Mergulho em águas contaminadas': '/images/DOW/PIC00107.JPG',
+  'Manutenção em fábricas de papel e celulose': '/images/BRACELL/WhatsApp Image 2025-09-02 at 16.26.27.jpeg',
+  'Serviço em ETE (Estação de Tratamento de Esgoto/Água)': '/images/BRK AMBIENTAL/DSC08528.JPG'
+};
 
 const dadosServicos = {};
 for (const cat in rawData) {
-  dadosServicos[cat] = rawData[cat].map((info, index) => {
+  dadosServicos[cat] = rawData[cat].map(info => {
+    const imagem = imagensPorTitulo[info.t];
+    if (!imagem) throw new Error('Imagem não definida para o serviço: ' + info.t);
     return {
       titulo: info.t,
       shortDesc: info.c,
       longDesc: info.l,
-      imagem: null, // Será preenchido depois do carregamento dos dados
-      servicoCategoria: cat,
-      indice: index
+      imagem
     };
   });
 }
-
-// Carrega os dados ao iniciar
-carregarGalleryData().then(() => {
-  // Atualiza as imagens depois que os dados forem carregados
-  for (const cat in dadosServicos) {
-    dadosServicos[cat].forEach((card, index) => {
-      card.imagem = obterImagemParaServico(cat, index);
-    });
-  }
-  // Renderiza os cards com as imagens reais
-  renderizarBotoes();
-  renderizarCards();
-});
 
 const categoriesContainer = document.getElementById('categories-container');
 const carouselTrack = document.getElementById('carousel-track');
 const serviceBg = document.getElementById('service-bg');
 const carouselDots = document.getElementById('carousel-dots');
 let categoriaAtual = "Recuperação Estrutural";
+
+renderizarBotoes();
+renderizarCards();
 
 function renderizarBotoes() {
   categoriesContainer.innerHTML = '';
@@ -415,11 +351,7 @@ function renderizarBotoes() {
     categoriesContainer.appendChild(btn);
   });
 }
-`}
-      </Script>
 
-      <Script id="servicos-cards" strategy="lazyOnload">
-        {`
 function renderizarCards() {
   carouselTrack.innerHTML = '';
   carouselDots.innerHTML = '';
@@ -473,11 +405,7 @@ function updateBackground(imageUrl) {
   serviceBg.style.backgroundSize = 'cover';
   serviceBg.style.backgroundPosition = 'center';
 }
-`}
-      </Script>
 
-      <Script id="servicos-carousel" strategy="lazyOnload">
-        {`
 window.moveCarousel = function(direction) {
   const cardsNodes = document.querySelectorAll('.service-card');
   if (cardsNodes.length <= 1) return;

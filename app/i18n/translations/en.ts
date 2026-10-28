@@ -39,9 +39,79 @@ export const en: Translation = {
   // About Us
   about: {
     title: 'About Us',
-    paragraph1: 'ATLÂNTICO is a company specialized in underwater works that operates in the market with innovation and qualified personnel to perform technical work.',
-    paragraph2: 'Our goal is to respect the client, their employees, and the environment.',
-    paragraph3: 'We rely on our planning department to optimize the work, reducing deadlines and costs while prioritizing safety in operations.',
+    paragraph1: 'Since 2008, Atlântico Underwater Technical Services has turned knowledge and experience into solutions for underwater operations. What began in a small office has grown over more than 18 years through the dedication of a specialized team.',
+    paragraph2: 'We work in ports, hydroelectric plants, dams, bridges, vessels, sanitation and industrial infrastructure, supporting projects in different Brazilian states.',
+    paragraph3: 'Planning, qualified professionals, technology and a focus on safety guide every operation. We are committed to responsive, responsible service that respects our clients, people and the environment.',
+  },
+  institutional: {
+    history: {
+      title: 'Our history and experience',
+      subtitle: 'Technical expertise built in the field since 2008.',
+      paragraphs: [
+        'Over nearly two decades, Atlântico has expanded its work and built experience in underwater technical services for different infrastructure sectors.',
+        'Our team works in port, maritime, river and industrial environments, supporting clients with inspections, maintenance, structural recovery, dredging, surveys and special operations.',
+        'Each project is prepared with planning, trained professionals and resources suited to the operation, with a focus on responsiveness, safety, quality and environmental responsibility.'
+      ],
+      experience: '18+ years of experience'
+    },
+    principles: {
+      title: 'Mission, vision and values',
+      cards: [
+        {
+          title: 'Mission',
+          description: 'Create value for our clients through knowledge, process innovation and the application of technology.'
+        },
+        {
+          title: 'Vision',
+          description: 'Be a leading company through agile, technically differentiated services.'
+        },
+        {
+          title: 'Values',
+          description: 'Maintain transparent relationships, honor commitments, respect and value people, and preserve and sustain the environment.'
+        }
+      ]
+    },
+    certifications: {
+      title: 'Certifications and qualifications',
+      subtitle: 'Credentials that reinforce Atlântico’s commitment to its clients and operations.',
+      jvcTitle: 'JVC certification',
+      jvcDescription: 'JVC certification is highlighted among Atlântico’s institutional credentials.',
+      fcemTitle: 'FCEM qualification',
+      fcemDescription: 'The company is qualified by FCEM to provide underwater technical services.'
+    },
+    structure: {
+      title: 'Operational structure',
+      subtitle: 'Vehicles, equipment and tools supporting underwater operations.',
+      cards: [
+        {
+          title: 'Support vehicles',
+          description: 'Support fleet for team travel, mobilization and material transport.',
+          items: ['Support trucks', 'Vans and utility vehicles', 'Logistics for different work sites']
+        },
+        {
+          title: 'Diving equipment',
+          description: 'Systems supporting and controlling professional diving operations.',
+          items: ['Air compressors and cylinders', 'Decompression chambers', 'Control and communication panels']
+        },
+        {
+          title: 'Tools and inspection',
+          description: 'Resources for inspecting, maintaining and intervening in submerged structures.',
+          items: ['Underwater cameras and lighting', 'Pneumatic and hydraulic tools', 'Underwater cutting and welding equipment']
+        }
+      ]
+    },
+    coverage: {
+      title: 'Where we work',
+      subtitle: 'Headquartered in Santos, serving projects throughout Brazil.',
+      regionsTitle: 'Regions served',
+      regions: ['North', 'Northeast', 'Central-West', 'Southeast', 'South'],
+      citiesTitle: 'Offices and project locations',
+      cities: ['Santos/SP — headquarters', 'Casa Branca/SP — branch', 'Florianópolis/SC', 'Belém/PA', 'Rondonópolis/MT', 'Porto Ferreira/SP'],
+      mapAlt: 'Map of Brazil showing Atlântico project locations across all regions.',
+      locationTitle: 'Head office',
+      locationAddress: 'Rua Bittencourt, 25 — Vila Nova, Santos/SP, Brazil',
+      mapLink: 'Open location in Google Maps'
+    }
   },
   
   // Clients

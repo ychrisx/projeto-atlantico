@@ -453,9 +453,9 @@ export default function SobreNosPage() {
                   <img src="/images/logo-atlatico-vector.png" alt="Icon" className="w-full h-full object-contain mix-blend-screen grayscale brightness-200" />
                 </div>
                 
-                <img src="https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=800&q=80" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-100 z-10" alt="Slide 1" />
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-0 z-0" alt="Slide 2" />
-                <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-0 z-0" alt="Slide 3" />
+                <img src="/images/CODESP/IMG_20181009_153306910_HDR.jpg" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-100 z-10" alt="Operação de salvamento de embarcação no porto" />
+                <img src="/images/NAVIOS/DSC07606.JPG" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-0 z-0" alt="Navio em operação no porto" />
+                <img src="/images/NAVIOS/DSC06324.JPG" className="slide-img fade-img absolute inset-0 w-full h-full object-cover opacity-0 z-0" alt="Mergulhador técnico realizando inspeção subaquática" />
               </div>
 
               <div className="w-full md:w-3/5 text-lg md:text-2xl font-medium leading-relaxed text-whiteish tracking-wide">
@@ -469,6 +469,152 @@ export default function SobreNosPage() {
                   {t.about.paragraph3}
                 </p>
               </div>
+            </div>
+          </section>
+
+          <section className="w-full max-w-[1400px] px-4 md:px-10 mb-16">
+            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.institutional.history.title}</h2>
+            </div>
+            <div className="bg-[#0f172a]/90 rounded-3xl p-6 md:p-10 border border-primary/50 shadow-2xl">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                <p className="text-lg md:text-xl text-gray-200">{t.institutional.history.subtitle}</p>
+                <span className="shrink-0 rounded-full bg-accent/15 border border-accent/50 px-5 py-3 text-accent font-bold text-lg">
+                  {t.institutional.history.experience}
+                </span>
+              </div>
+              <div className="grid md:grid-cols-3 gap-5">
+                {t.institutional.history.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="rounded-2xl bg-white/5 p-5 leading-relaxed text-gray-200 border border-primary/30">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section id="missao-visao-valores" className="w-full max-w-[1400px] px-4 md:px-10 mb-16">
+            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.institutional.principles.title}</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-5">
+              {t.institutional.principles.cards.map((principle) => (
+                <article key={principle.title} className="rounded-3xl bg-[#0f172a]/90 border border-primary/50 shadow-2xl p-6 md:p-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-accent mb-4">{principle.title}</h3>
+                  <p className="text-gray-200 leading-relaxed">{principle.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="w-full max-w-[1400px] px-4 md:px-10 mb-16">
+            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.institutional.certifications.title}</h2>
+            </div>
+            <div className="mb-5 text-gray-200 text-lg">{t.institutional.certifications.subtitle}</div>
+            <div className="grid md:grid-cols-2 gap-5">
+              {[
+                {
+                  title: t.institutional.certifications.jvcTitle,
+                  description: t.institutional.certifications.jvcDescription,
+                  mark: 'JVC'
+                },
+                {
+                  title: t.institutional.certifications.fcemTitle,
+                  description: t.institutional.certifications.fcemDescription,
+                  mark: 'FCEM'
+                }
+              ].map((credential) => (
+                <article key={credential.mark} className="flex items-start gap-5 rounded-3xl bg-[#0f172a]/90 border border-primary/50 shadow-2xl p-6 md:p-8">
+                  <span className="shrink-0 rounded-2xl bg-accent text-[#0E1A2B] font-black text-xl px-4 py-3">{credential.mark}</span>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{credential.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">{credential.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="estrutura" className="w-full max-w-[1400px] px-4 md:px-10 mb-16">
+            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.institutional.structure.title}</h2>
+            </div>
+            <p className="text-gray-200 text-lg mb-5">{t.institutional.structure.subtitle}</p>
+            <div className="grid md:grid-cols-3 gap-5">
+              {t.institutional.structure.cards.map((card, index) => (
+                <article key={card.title} className="rounded-3xl bg-[#0f172a]/90 border border-primary/50 shadow-2xl p-6 md:p-8">
+                  <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent/15 text-accent text-2xl mb-5" aria-hidden="true">
+                    <i className={`fa-solid ${['fa-truck', 'fa-person-swimming', 'fa-screwdriver-wrench'][index]}`} />
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{card.title}</h3>
+                  <p className="text-gray-300 leading-relaxed mb-5">{card.description}</p>
+                  <ul className="space-y-2 text-sm md:text-base text-gray-200">
+                    {card.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-accent" aria-hidden="true">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="area-de-atuacao" className="w-full max-w-[1400px] px-4 md:px-10 mb-16">
+            <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-4 shadow-lg border border-primary/50">
+              <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">{t.institutional.coverage.title}</h2>
+            </div>
+            <p className="text-gray-200 text-lg mb-5">{t.institutional.coverage.subtitle}</p>
+            <div className="grid lg:grid-cols-2 gap-6 rounded-3xl bg-[#0f172a]/90 border border-primary/50 shadow-2xl p-5 md:p-8">
+              <div className="rounded-2xl bg-[#08111d] flex items-center justify-center min-h-64 p-3 md:p-5">
+                <img
+                  src="/images/mapa-atendimento-brasil.png"
+                  alt={t.institutional.coverage.mapAlt}
+                  className="w-full h-auto max-h-[520px] object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-col justify-center gap-7">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-accent mb-3">{t.institutional.coverage.regionsTitle}</h3>
+                  <ul className="flex flex-wrap gap-2">
+                    {t.institutional.coverage.regions.map((region) => (
+                      <li key={region} className="rounded-full bg-white/10 border border-primary/50 px-4 py-2 text-sm md:text-base text-white">{region}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-accent mb-3">{t.institutional.coverage.citiesTitle}</h3>
+                  <ul className="grid sm:grid-cols-2 gap-2 text-gray-200">
+                    {t.institutional.coverage.cities.map((city) => (
+                      <li key={city} className="rounded-xl bg-white/5 px-4 py-3">{city}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-2xl bg-white/5 p-4">
+                  <h3 className="font-bold text-white mb-1">{t.institutional.coverage.locationTitle}</h3>
+                  <p className="text-gray-300 mb-3">{t.institutional.coverage.locationAddress}</p>
+                  <a
+                    href="https://maps.google.com/?q=Rua+Bittencourt,+25+Vila+Nova+-+Santos/SP"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-accent underline underline-offset-4 hover:text-white"
+                  >
+                    {t.institutional.coverage.mapLink}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 overflow-hidden rounded-3xl border border-primary/50 shadow-2xl">
+              <iframe
+                title={t.institutional.coverage.locationTitle}
+                src="https://maps.google.com/maps?q=Rua%20Bittencourt%2C%2025%2C%20Vila%20Nova%2C%20Santos%20-%20SP&output=embed"
+                className="w-full h-[320px] md:h-[420px] border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </section>
 

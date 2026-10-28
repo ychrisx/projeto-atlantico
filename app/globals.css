@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+img {
+  image-orientation: from-image;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

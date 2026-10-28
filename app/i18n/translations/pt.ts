@@ -37,9 +37,81 @@ export const pt = {
   // Sobre Nós
   about: {
     title: 'Sobre Nós',
-    paragraph1: 'A ATLÂNTICO é uma empresa especializada em obras submarinas que atua no mercado com inovação e pessoal qualificado para realização de trabalhos técnicos.',
-    paragraph2: 'Temos como meta respeito com o cliente, seus colaboradores e meio ambiente.',
-    paragraph3: 'Contamos com nosso departamento de planejamento para aperfeiçoar os trabalhos reduzindo prazo e custos priorizando segurança nas operações.',
+    paragraph1: 'Desde 2008, a Atlântico Serviços Técnicos Submarinos transforma conhecimento e experiência em soluções para operações subaquáticas. O que começou em um pequeno escritório cresceu, ao longo de mais de 18 anos, com dedicação de uma equipe especializada.',
+    paragraph2: 'Atuamos em portos, hidrelétricas, barragens, pontes, embarcações, saneamento e infraestrutura industrial, atendendo projetos em diferentes estados brasileiros.',
+    paragraph3: 'Planejamento, profissionais qualificados, tecnologia e atenção à segurança orientam cada operação. Nosso compromisso é entregar um atendimento ágil e responsável, com respeito aos clientes, às pessoas e ao meio ambiente.',
+  },
+
+  // Apresentação institucional
+  institutional: {
+    history: {
+      title: 'Trajetória e experiência',
+      subtitle: 'Conhecimento técnico construído em campo desde 2008.',
+      paragraphs: [
+        'Ao longo de quase duas décadas, a Atlântico ampliou sua atuação e consolidou experiência em serviços técnicos submarinos para diferentes setores da infraestrutura.',
+        'Nossa equipe trabalha em ambientes portuários, marítimos, fluviais e industriais, apoiando clientes em inspeções, manutenção, recuperação estrutural, dragagem, levantamentos e operações especiais.',
+        'Cada projeto é preparado com planejamento, profissionais capacitados e recursos adequados à operação, buscando agilidade, segurança, qualidade e responsabilidade socioambiental.'
+      ],
+      experience: '18+ anos de experiência'
+    },
+    principles: {
+      title: 'Missão, visão e valores',
+      cards: [
+        {
+          title: 'Missão',
+          description: 'Agregar valor para nossos clientes por meio do conhecimento, inovação nos processos e aplicação de tecnologia.'
+        },
+        {
+          title: 'Visão',
+          description: 'Ser uma empresa de vanguarda por meio da prestação de serviços ágeis e tecnicamente diferenciados.'
+        },
+        {
+          title: 'Valores',
+          description: 'Manter transparência nas relações, honrar compromissos, respeitar e valorizar o ser humano, preservar e sustentar o meio ambiente.'
+        }
+      ]
+    },
+    certifications: {
+      title: 'Certificações e habilitações',
+      subtitle: 'Credenciais que reforçam o compromisso da Atlântico com seus clientes e operações.',
+      jvcTitle: 'Certificação JVC',
+      jvcDescription: 'Certificação JVC destacada entre as credenciais institucionais da Atlântico.',
+      fcemTitle: 'Habilitação pela FCEM',
+      fcemDescription: 'Empresa habilitada pela FCEM para atuação em serviços técnicos submarinos.'
+    },
+    structure: {
+      title: 'Estrutura operacional',
+      subtitle: 'Veículos, equipamentos e ferramentas de apoio às operações submarinas.',
+      cards: [
+        {
+          title: 'Veículos de apoio',
+          description: 'Frota de apoio para deslocamento das equipes, mobilização e transporte de materiais.',
+          items: ['Caminhões de apoio', 'Vans e veículos utilitários', 'Logística para diferentes frentes de trabalho']
+        },
+        {
+          title: 'Equipamentos de mergulho',
+          description: 'Sistemas para suporte e controle de operações profissionais de mergulho.',
+          items: ['Compressores e cilindros de ar', 'Câmaras de descompressão', 'Painéis de controle e comunicação']
+        },
+        {
+          title: 'Ferramentas e inspeção',
+          description: 'Recursos para inspeção, manutenção e intervenção em estruturas submersas.',
+          items: ['Câmeras e iluminação subaquática', 'Ferramentas pneumáticas e hidráulicas', 'Equipamentos para corte e solda submarina']
+        }
+      ]
+    },
+    coverage: {
+      title: 'Onde atuamos',
+      subtitle: 'Base em Santos e atendimento a projetos em todo o Brasil.',
+      regionsTitle: 'Regiões atendidas',
+      regions: ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul'],
+      citiesTitle: 'Bases e cidades com projetos',
+      cities: ['Santos/SP — matriz', 'Casa Branca/SP — filial', 'Florianópolis/SC', 'Belém/PA', 'Rondonópolis/MT', 'Porto Ferreira/SP'],
+      mapAlt: 'Mapa do Brasil com pontos de atuação da Atlântico em todas as regiões.',
+      locationTitle: 'Escritório central',
+      locationAddress: 'Rua Bittencourt, 25 — Vila Nova, Santos/SP',
+      mapLink: 'Abrir localização no Google Maps'
+    }
   },
   
   // Clientes

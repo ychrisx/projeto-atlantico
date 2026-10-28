@@ -157,7 +157,7 @@ export default function FaleConoscoPage() {
         </header>
 
         {/* SEÇÃO FALE CONOSCO */}
-        <section className="relative min-h-screen pt-32 pb-20 bg-cover bg-center flex flex-col px-2 md:px-4" style={{backgroundImage: "url('https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"}}>
+        <section className="relative min-h-screen pt-32 pb-20 bg-cover bg-center flex flex-col px-2 md:px-4" style={{backgroundImage: "url('/images/fale-conosco-bg.jpg')"}}>
           <div className="absolute inset-0 bg-dark/30"></div>
           <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col h-full mt-8 md:mt-12">
             <div className="bg-[#1a2b45] inline-block px-6 md:px-8 py-2 rounded-t-xl rounded-br-xl mb-6 shadow-lg border border-primary/50 self-start ml-2 md:ml-10 animate-fadeInUp">

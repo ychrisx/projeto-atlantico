@@ -240,8 +240,8 @@
                                 },
                      "AT\u0026T ENERGIA S.A":  {
                                                    "imagens":  [
-                                                                   "/images/AT\u0026T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.44.jpeg",
-                                                                   "/images/AT\u0026T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.47.jpeg"
+                                                                   "/images/AT%26T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.44.jpeg",
+                                                                   "/images/AT%26T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.47.jpeg"
                                                                ],
                                                    "nome":  "AT\u0026T ENERGIA S.A",
                                                    "totalImagens":  2,
@@ -1186,7 +1186,7 @@
                      "CTG BRASIL":  {
                                         "imagens":  [
                                                         "/images/CTG BRASIL/DSC01374  Vista geral de montante.jpg",
-                                                        "/images/CTG BRASIL/DSC01377Vista do nicho de descida da comporta de manutenção das UGs.jpg",
+                                                        "/images/CTG BRASIL/DSC01377-comporta-orientada.jpg",
                                                         "/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg",
                                                         "/images/CTG BRASIL/DSC01408  Vista geral de jusante.JPG"
                                                     ],
@@ -1990,8 +1990,8 @@
                                                             "cliente":  "AT\u0026T ENERGIA S.A",
                                                             "totalImagens":  2,
                                                             "imagens":  [
-                                                                            "/images/AT\u0026T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.44.jpeg",
-                                                                            "/images/AT\u0026T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.47.jpeg"
+                                                                            "/images/AT%26T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.44.jpeg",
+                                                                            "/images/AT%26T ENERGIA S.A/WhatsApp Image 2021-11-29 at 10.35.47.jpeg"
                                                                         ]
                                                         },
                                                         {
@@ -2062,7 +2062,7 @@
                                                             "totalImagens":  4,
                                                             "imagens":  [
                                                                             "/images/CTG BRASIL/DSC01374  Vista geral de montante.jpg",
-                                                                            "/images/CTG BRASIL/DSC01377Vista do nicho de descida da comporta de manutenção das UGs.jpg",
+                                                                            "/images/CTG BRASIL/DSC01377-comporta-orientada.jpg",
                                                                             "/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg",
                                                                             "/images/CTG BRASIL/DSC01408  Vista geral de jusante.JPG"
                                                                         ]
