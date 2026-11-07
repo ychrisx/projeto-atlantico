@@ -253,40 +253,40 @@ const imagensPorTitulo = {
   'Reforço estrutural de estacas de carga, prancha e laje': '/images/4S ENGENHARIA/FOTOS/DSC07680.JPG',
   'Reforço estrutural de pilares, estacas e pontes': '/images/FINGER & SOMMER/PONTE JAGUARIÚNA/Fotos/fotos fornecidas pelo roger/IMG-20191204-WA0042.jpg',
   'Recuperação estrutural de píer e dolfins': '/images/AGEO TERMINAIS/DSC01722.JPG',
-  'Aplicação de massa epóxi': '/images/CUTRALE/DSC06682.JPG',
-  'Concretagem com argamassa de alto desempenho': '/images/AXXO/DSC00676.JPG',
+  'Aplicação de massa epóxi': '',
+  'Concretagem com argamassa de alto desempenho': '',
   'Demolição de concreto': '/images/AXXO/DSC00684.JPG',
-  'Corte e solda submarina em estruturas de aço': '/images/CODESP/DSC00544.JPG',
-  'Derrocagem a frio ou a fogo': '/images/CHIP BELEM/DSC08826.JPG',
+  'Corte e solda submarina em estruturas de aço': '/images/CUTRALE/DSC06682.JPG',
+  'Derrocagem a frio ou a fogo': '',
   'Recuperação e reforço de hidrelétricas e barragens': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
   'Colocação/retirada de stop logs e painéis': '/images/FKB - COMPORTAS/IMG_9267.JPG',
-  'Vedação de ensecadeiras': '/images/CTG BRASIL/DSC01377-comporta-orientada.jpg',
+  'Vedação de ensecadeiras': '/images/CTG BRASIL/DSC01408  Vista geral de jusante-vertical.jpg',
   'Retirada/colocação de caixão metálico': '/images/FKB - COMPORTAS/IMG_9293.JPG',
-  'Colocação de anteparos e cabos de aço': '/images/FKB - COMPORTAS/IMG_9288.JPG',
-  'Inspeção em comportas e soleiras': '/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg',
+  'Colocação de anteparos e cabos de aço': '/images/CTG BRASIL 2022/WhatsApp Image 2022-11-22 at 11.54.26.jpeg',
+  'Inspeção em comportas e soleiras': '/images/CTG BRASIL/DSC01377-comporta-orientada.jpg',
   'Inspeção tátil nas grades': '/images/CTG BRASIL 2023/DSC02856.JPG',
-  'Vistoria em painéis de vedação': '/images/CTG BRASIL/DSC01408  Vista geral de jusante.JPG',
-  'Inspeção visual submarina': '/images/NAVIOS/DSC06301.JPG',
+  'Vistoria em painéis de vedação': '/images/CTG BRASIL/DSC01400 Vista geral de jusante.jpg',
+  'Inspeção visual submarina': '/images/CODESP/DSC00541.JPG',
   'Vistoria com foto e vídeo': '/images/NAVIOS/DSC06324.JPG',
-  'Inspeção com monitoramento de superfície': '/images/SABESP 2021/DSC02626.JPG',
+  'Inspeção com monitoramento de superfície': '/images/CTG BRASIL 2022/WhatsApp Image 2022-11-22 at 11.54.18.jpeg',
   'Ensaios não destrutivos': '/images/AGEO/DSC05195.JPG',
   'Vistorias em ambientes confinados': '/images/PREFEITURA DE SANTOS/WhatsApp Image 2020-07-24 at 13.59.59.jpeg',
   'Fiscalização e administração em obras portuárias': '/images/CMA CGM/TOVO1041.JPG',
   'Emissão de relatório descritivo de inspeção': '/images/CODESP/DSC07101.JPG',
   'Vistoria para substituição e extensão de docagem': '/images/CMA CGM/YLHT5300.JPG',
-  'Tampoamento / Bujonamento': '/images/NAVIOS 2022/FHD0087.JPG',
+  'Tampoamento / Bujonamento': '',
   'Calefação de vazamentos': '/images/NAVIOS 2022/FHD0453.JPG',
   'Fotografia e filmagem subaquática': '/images/NAVIOS/DSC06301.JPG',
   'Levantamentos topográfico e cadastral': '/images/CODESP/DSC07101.JPG',
-  'Batimetria / Topobatimetria': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
+  'Batimetria / Topobatimetria': '',
   'Dragagem / Dragagem Subaquática': '/images/CHIP BELEM/DSC08831.JPG',
   'Sondagens': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
-  'Coleta de material': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
+  'Coleta de material': '/images/IPT - INSTITUTO DE PESQUISAS TECNOLÓGICAS/DSC09148.JPG',
   'Acompanhamento de cravação de estacas': '/images/4S ENGENHARIA/FOTOS/DSC07685.JPG',
   'Inspeção, lançamento e manutenção de emissários': '/images/SABESP 2025/DSC00884.JPG',
   'Oleodutos/Gasodutos/Slamorodutos': '/images/SABESP 2025/DSC00873.JPG',
   'Cabos elétricos submarinos': '/images/SABESP 2021/DSC02623.JPG',
-  'Cabos de fibra ótica': '/images/LOG-IN_PROINDE/DSC00491.JPG',
+  'Cabos de fibra ótica': '/images/LOG-IN_PROINDE/DSC00492.JPG',
   'Resgate e Salvatagem Naval': '/images/CODESP/IMG_20181009_153306910_HDR.jpg',
   'Busca, remoção e salvamento de estruturas flutuantes': '/images/REDRAM/WhatsApp Image 2021-07-26 at 11.39.24.jpeg',
   'Mergulho em águas contaminadas': '/images/DOW/PIC00107.JPG',
@@ -297,8 +297,10 @@ const imagensPorTitulo = {
 const dadosServicos = {};
 for (const cat in rawData) {
   dadosServicos[cat] = rawData[cat].map(info => {
+    if (!Object.prototype.hasOwnProperty.call(imagensPorTitulo, info.t)) {
+      throw new Error('Imagem não definida para o serviço: ' + info.t);
+    }
     const imagem = imagensPorTitulo[info.t];
-    if (!imagem) throw new Error('Imagem não definida para o serviço: ' + info.t);
     return {
       titulo: info.t,
       shortDesc: info.c,
@@ -312,6 +314,7 @@ const categoriesContainer = document.getElementById('categories-container');
 const carouselTrack = document.getElementById('carousel-track');
 const serviceBg = document.getElementById('service-bg');
 const carouselDots = document.getElementById('carousel-dots');
+const imagemFundoGenerica = '/images/hero-mergulhador.jpg';
 let categoriaAtual = "Recuperação Estrutural";
 
 renderizarBotoes();
@@ -361,7 +364,8 @@ function renderizarCards() {
     const card = document.createElement('div');
     card.className = "service-card snap-center shrink-0 w-[300px] md:w-[600px] h-[420px] md:h-[400px] bg-panel rounded-2xl border border-primary/30 flex shadow-2xl relative overflow-hidden card-transition group cursor-pointer";
     card.setAttribute('data-bg', cardData.imagem);
-    card.innerHTML = '<div class="w-1/3 md:w-1/2 h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 z-20" style="background-image: url(' + "'" + cardData.imagem + "'" + ');"></div><div class="w-2/3 md:w-1/2 p-4 md:p-6 flex flex-col justify-between relative z-10 bg-panel overflow-hidden"><img src="/images/logo-atlatico-vector.png" class="absolute top-1/2 left-1/2 -translate-y-1/2 w-[150%] max-w-none opacity-[0.05] grayscale pointer-events-none z-0 rotate-12" alt="Watermark"><div class="relative z-10 flex-1 flex flex-col overflow-hidden mb-4"><div class="normal-content flex flex-col"><h3 class="text-[13px] md:text-2xl font-bold uppercase leading-tight mb-2 md:mb-3 text-white">' + cardData.titulo + '</h3><p class="text-[11px] md:text-base text-gray-300 font-light leading-snug line-clamp-6 md:line-clamp-4 text-left md:text-justify">' + cardData.shortDesc + '</p></div><div class="expanded-content flex flex-col h-full overflow-hidden"><h4 class="text-[11px] md:text-base font-bold uppercase leading-tight mb-2 text-accent tracking-widest shrink-0">' + cardData.titulo + '</h4><p class="text-[10px] md:text-base text-gray-200 font-light leading-relaxed overflow-y-auto no-scrollbar text-left md:text-justify">' + cardData.longDesc + '</p></div></div><button class="btn-action relative z-10 bg-dark border border-primary hover:bg-accent hover:border-accent text-white py-2 md:py-3 rounded uppercase font-bold text-[11px] md:text-lg transition-colors w-full shadow-lg shrink-0 mt-auto">Saiba Mais</button></div>';
+    const imageStyle = "background-image: url('" + (cardData.imagem || imagemFundoGenerica) + "');";
+    card.innerHTML = '<div class="w-1/3 md:w-1/2 h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 z-20" style="' + imageStyle + '"></div><div class="w-2/3 md:w-1/2 p-4 md:p-6 flex flex-col justify-between relative z-10 bg-panel overflow-hidden"><img src="/images/logo-atlatico-vector.png" class="absolute top-1/2 left-1/2 -translate-y-1/2 w-[150%] max-w-none opacity-[0.05] grayscale pointer-events-none z-0 rotate-12" alt="Watermark"><div class="relative z-10 flex-1 flex flex-col overflow-hidden mb-4"><div class="normal-content flex flex-col"><h3 class="text-[13px] md:text-2xl font-bold uppercase leading-tight mb-2 md:mb-3 text-white">' + cardData.titulo + '</h3><p class="text-[11px] md:text-base text-gray-300 font-light leading-snug line-clamp-6 md:line-clamp-4 text-left md:text-justify">' + cardData.shortDesc + '</p></div><div class="expanded-content flex flex-col h-full overflow-hidden"><h4 class="text-[11px] md:text-base font-bold uppercase leading-tight mb-2 text-accent tracking-widest shrink-0">' + cardData.titulo + '</h4><p class="text-[10px] md:text-base text-gray-200 font-light leading-relaxed overflow-y-auto no-scrollbar text-left md:text-justify">' + cardData.longDesc + '</p></div></div><button class="btn-action relative z-10 bg-dark border border-primary hover:bg-accent hover:border-accent text-white py-2 md:py-3 rounded uppercase font-bold text-[11px] md:text-lg transition-colors w-full shadow-lg shrink-0 mt-auto">Saiba Mais</button></div>';
     
     card.addEventListener('mouseenter', () => updateBackground(cardData.imagem));
     
@@ -401,7 +405,7 @@ function renderizarCards() {
 }
 
 function updateBackground(imageUrl) {
-  serviceBg.style.backgroundImage = 'url(' + "'" + imageUrl + "'" + ')';
+  serviceBg.style.backgroundImage = 'url(' + "'" + (imageUrl || imagemFundoGenerica) + "'" + ')';
   serviceBg.style.backgroundSize = 'cover';
   serviceBg.style.backgroundPosition = 'center';
 }
