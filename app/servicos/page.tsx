@@ -122,13 +122,13 @@ export default function ServicosPage() {
             <div id="categories-container" className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 mb-8 px-2 md:px-10 w-full">
             </div>
             <div className="relative flex-grow flex flex-col items-center justify-center w-full">
-              <div className="relative w-full flex items-center justify-center">
-                <button onClick={() => (window as any).moveCarousel(-1)} className="absolute left-0 md:left-4 z-20 text-4xl md:text-7xl text-white/40 hover:text-accent transition-colors">
+              <div className="relative w-full grid grid-cols-[24px_minmax(0,1fr)_24px] md:grid-cols-[56px_minmax(0,1fr)_56px] items-center">
+                <button aria-label="Serviço anterior" onClick={() => (window as any).moveCarousel(-1)} className="relative z-20 flex h-full w-full items-center justify-center text-3xl md:text-5xl text-white/40 hover:text-accent transition-colors">
                   <i className="fa-solid fa-angle-left"></i>
                 </button>
                 <div id="carousel-track" className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory w-full px-10 md:px-24 py-4 md:py-6 items-center min-h-[450px] md:min-h-[500px]">
                 </div>
-                <button onClick={() => (window as any).moveCarousel(1)} className="absolute right-0 md:right-4 z-20 text-4xl md:text-7xl text-white/40 hover:text-accent transition-colors">
+                <button aria-label="Próximo serviço" onClick={() => (window as any).moveCarousel(1)} className="relative z-20 flex h-full w-full items-center justify-center text-3xl md:text-5xl text-white/40 hover:text-accent transition-colors">
                   <i className="fa-solid fa-angle-right"></i>
                 </button>
               </div>
@@ -253,11 +253,11 @@ const imagensPorTitulo = {
   'Reforço estrutural de estacas de carga, prancha e laje': '/images/4S ENGENHARIA/FOTOS/DSC07680.JPG',
   'Reforço estrutural de pilares, estacas e pontes': '/images/FINGER & SOMMER/PONTE JAGUARIÚNA/Fotos/fotos fornecidas pelo roger/IMG-20191204-WA0042.jpg',
   'Recuperação estrutural de píer e dolfins': '/images/AGEO TERMINAIS/DSC01722.JPG',
-  'Aplicação de massa epóxi': '',
-  'Concretagem com argamassa de alto desempenho': '',
+  'Aplicação de massa epóxi': '/images/hero-salvamento-hq.jpg',
+  'Concretagem com argamassa de alto desempenho': '/images/hero-salvamento-hq.jpg',
   'Demolição de concreto': '/images/AXXO/DSC00684.JPG',
   'Corte e solda submarina em estruturas de aço': '/images/CUTRALE/DSC06682.JPG',
-  'Derrocagem a frio ou a fogo': '',
+  'Derrocagem a frio ou a fogo': '/images/hero-salvamento-hq.jpg',
   'Recuperação e reforço de hidrelétricas e barragens': '/images/CTG BRASIL 2022/1. UHE Chavantes aéreo.jpg',
   'Colocação/retirada de stop logs e painéis': '/images/FKB - COMPORTAS/IMG_9267.JPG',
   'Vedação de ensecadeiras': '/images/CTG BRASIL/DSC01408  Vista geral de jusante-vertical.jpg',
@@ -274,11 +274,11 @@ const imagensPorTitulo = {
   'Fiscalização e administração em obras portuárias': '/images/CMA CGM/TOVO1041.JPG',
   'Emissão de relatório descritivo de inspeção': '/images/CODESP/DSC07101.JPG',
   'Vistoria para substituição e extensão de docagem': '/images/CMA CGM/YLHT5300.JPG',
-  'Tampoamento / Bujonamento': '',
+  'Tampoamento / Bujonamento': '/images/hero-salvamento-hq.jpg',
   'Calefação de vazamentos': '/images/NAVIOS 2022/FHD0453.JPG',
   'Fotografia e filmagem subaquática': '/images/NAVIOS/DSC06301.JPG',
   'Levantamentos topográfico e cadastral': '/images/CODESP/DSC07101.JPG',
-  'Batimetria / Topobatimetria': '',
+  'Batimetria / Topobatimetria': '/images/hero-salvamento-hq.jpg',
   'Dragagem / Dragagem Subaquática': '/images/CHIP BELEM/DSC08831.JPG',
   'Sondagens': '/images/CAMARGO CORREA - FOZ DO CHAPECÓ/IMG_1711.JPG',
   'Coleta de material': '/images/IPT - INSTITUTO DE PESQUISAS TECNOLÓGICAS/DSC09148.JPG',
