@@ -438,7 +438,9 @@ export default function Home() {
         {/* HERO PAGE */}
         <section id="hero" className="relative h-screen w-full flex items-end pb-20 justify-start px-6 md:px-10 pt-24">
           <div className="absolute inset-0 z-0">
-            <img src="/images/hero-salvamento-hq.jpg" alt="Salvamento Marítimo Atlântico" className="w-full h-full object-cover animate-fadeIn" />
+            <div className="h-full w-full opacity-80">
+              <img src="/images/hero-preview.png" alt="Salvamento Marítimo Atlântico" className="w-full h-full object-cover animate-fadeIn" />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
             <div className="absolute inset-0 bg-blue-900/30 mix-blend-multiply"></div>
           </div>
