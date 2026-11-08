@@ -21,9 +21,9 @@ export default function LanguageWelcomeModal() {
   }, []);
 
   const handleLanguageChoice = (locale: Locale) => {
-    setLocale(locale);
     // Marca como escolhido apenas para esta sessão (não persiste entre abas/fechamento)
     sessionStorage.setItem('languageChosenThisSession', 'true');
+    setLocale(locale);
     setIsOpen(false);
   };
 
